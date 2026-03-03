@@ -7,10 +7,6 @@ from bs4 import BeautifulSoup
 
 
 def scrape_jobs(search_query="python developer", location="Sydney NSW", max_pages=10, output_csv="seek_jobs.csv"):
-    """Scrape SEEK for a given query and location, with pagination.
-
-    Returns a pandas DataFrame containing the results and writes to `output_csv`.
-    """
     options = Options()
     options.add_argument("--start-maximized")
     driver = webdriver.Chrome(options=options)
@@ -75,7 +71,6 @@ def scrape_jobs(search_query="python developer", location="Sydney NSW", max_page
                     date = txt
                     break
 
-            # additional fields
             short_desc = ""
             desc_tag = job.find("span", {"data-automation": "jobShortDescription"})
             if desc_tag:
